@@ -1,6 +1,7 @@
-##NSBEHacks2025 HOMESAFE
+## NSBEHacks2025 HOMESAFE
 This project was made for our submission to NSBEHacks2025 -- see our Devpost here: https://devpost.com/software/homesafe-73n0f2.
 
+HomeSafe is a webapp that lets the user video call AI avatars that respond in real-time and will alert the authorities if danger is detected.
 
 ## Getting Started
 
