@@ -6,51 +6,36 @@ import "./styles.css"
 export default function LandingPage() {
   return (
     <div>
-      <header className="header">
-        <Link href="/" className="logo">
-          HomeFree
-        </Link>
-        <nav className="nav">
-          <Link href="/about" className="nav-link">
-            About
+
+      <main className="main">
+        <div className="hero bg-hero-section">
+          <div className="tagline-container">
+            <MapPin className="pin-icon" />
+            <div className="tagline-text-container">
+              <p className="tagline-text">
+                <strong>Stay Connected. Stay Safe.</strong>
+              </p>
+              <p className="tagline-description">
+                Walk with confidence, day or night. AI video calls, real-time alerts, and smart monitoring keep you protected.
+              </p>
+            </div>
+          </div>
+
+          <div className="video-container">
+            <Image
+              src="/HeaderImg.png"
+              alt="Video call interface illustration"
+              width={400}
+              height={300}
+              className="video-illustration"
+              priority
+            />
+          </div>
+
+          <Link href="/login" className="cta-button">
+            <button>Get Started</button>
           </Link>
-          <Link href="/login" className="nav-link">
-            Login
-          </Link>
-        </nav>
-      </header>
-
-<main className="main">
-  <div className="hero bg-hero-section">
-    <div className="tagline-container">
-      <MapPin className="pin-icon" />
-      <div className="tagline-text-container">
-        <p className="tagline-text">
-          <strong>Stay Connected. Stay Safe.</strong>
-        </p>
-        <p className="tagline-description">
-          Walk with confidence, day or night. AI video calls, real-time alerts, and smart monitoring keep you protected.
-        </p>
-      </div>
-    </div>
-
-    <div className="image-container">
-      <div className="video-container">
-        <Image
-          src="/HeaderImg.png"
-          alt="Video call interface illustration"
-          width={400}
-          height={300}
-          className="video-illustration"
-          priority
-        />
-      </div>
-    </div>
-
-    <button className="cta-button">Get Started</button>
-  </div>
-</main>
-
+        </div>
 
         <p className="description">
           HomeSafe ensures your safety when walking alone by providing real-time AI video calls, location sharing, and
@@ -83,6 +68,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+      </main>
     </div>
   )
 }
