@@ -1,15 +1,15 @@
 import React from 'react'
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from '@radix-ui/react-navigation-menu'
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '@radix-ui/react-navigation-menu'
 import Link from 'next/link'
 import { Button } from './ui/button'
 
 const NavBar = () => {
     return (
-        <div className='w-full flex flex-row justify-between center items-center py-4 border-gray-200 select-none'>
+        <div className='w-full flex flex-row justify-between center items-center pl-4 md:pl-0 py-4 border-gray-200 select-none'>
             <Link href='/'>HomeFree</Link>
             <NavigationMenu>
                 <NavigationMenuList>
-                    <NavigationMenuItem className='flex flex-row gap-10'>
+                    <NavigationMenuItem className='flex flex-row sm:gap-10'>
                         <Link href="/about" legacyBehavior passHref>
                             <NavigationMenuLink>
                                 <Button variant={'ghost'}>

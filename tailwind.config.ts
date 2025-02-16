@@ -56,10 +56,6 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		// fontFamily: {
-		// 	sans: [-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-		// 		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif],
-		// },
   	}
   },
   plugins: [require("tailwindcss-animate")],

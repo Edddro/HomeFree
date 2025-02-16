@@ -5,37 +5,35 @@ import "./styles.css"
 
 export default function LandingPage() {
   return (
-    <div>
-
-      <main className="main">
-        <div className="hero bg-hero-section">
-          <div className="tagline-container">
-            <MapPin className="pin-icon" />
-            <div className="tagline-text-container">
-              <p className="tagline-text">
-                <strong>Stay Connected. Stay Safe.</strong>
-              </p>
-              <p className="tagline-description">
-                Walk with confidence, day or night. AI video calls, real-time alerts, and smart monitoring keep you protected.
-              </p>
-            </div>
+    <main className="w-full border">
+      <div className="hero bg-hero-section">
+        <div className="tagline-container">
+          <MapPin className="pin-icon" />
+          <div className="tagline-text-container">
+            <p className="tagline-text">
+              <strong>Stay Connected. Stay Safe.</strong>
+            </p>
+            <p className="tagline-description">
+              Walk with confidence, day or night. AI video calls, real-time alerts, and smart monitoring keep you protected.
+            </p>
           </div>
-
-          <div className="video-container">
-            <Image
-              src="/HeaderImg.png"
-              alt="Video call interface illustration"
-              width={400}
-              height={300}
-              className="video-illustration"
-              priority
-            />
-          </div>
-
-          <Link href="/login" className="cta-button">
-            <button>Get Started</button>
-          </Link>
         </div>
+
+        <div className="video-container">
+          <Image
+            src="/HeaderImg.png"
+            alt="Video call interface illustration"
+            width={400}
+            height={300}
+            className="video-illustration"
+            priority
+          />
+        </div>
+
+        <Link href="/login" className="cta-button">
+          <button>Get Started</button>
+        </Link>
+      </div>
 
       <p className="description">
         HomeSafe ensures your safety when walking alone by providing real-time AI video calls, location sharing, and
@@ -60,15 +58,14 @@ export default function LandingPage() {
             </div>
           </div>
 
-            <div className="feature-card" style={{ "--index": 2 } as any}>
-              <div className="feature-content">
-                <h3 className="feature-title">Personalized AI Companion</h3>
-                <p className="feature-description">Talk to an AI version of your friends to keep you company.</p>
-              </div>
+          <div className="feature-card" style={{ "--index": 2 } as any}>
+            <div className="feature-content">
+              <h3 className="feature-title">Personalized AI Companion</h3>
+              <p className="feature-description">Talk to an AI version of your friends to keep you company.</p>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
   )
 }
