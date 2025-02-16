@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+=======
+>>>>>>> e2a70cd954e2ebf220bae55536f997c501a55de3
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+<<<<<<< HEAD
     "tailwind-merge": "^3.0.1",
+=======
+>>>>>>> e2a70cd954e2ebf220bae55536f997c501a55de3
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
