@@ -5,7 +5,7 @@ import "./styles.css"
 
 export default function LandingPage() {
   return (
-    <main className="w-full border">
+    <main>
       <div className="hero bg-hero-section">
         <div className="tagline-container">
           <MapPin className="pin-icon" />

@@ -44,10 +44,10 @@ export default function SignupForm() {
     };
 
     return (
-        <div className="min-h-screen bg-white p-4 md:p-6 lg:p-8">
-            <div className="mx-auto max-w-md">
+        <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+            <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
                 <button
-                    className="mb-6 flex items-center text-blue-600"
+                    className="mb-6 flex items-center text-blue-600 hover:text-blue-800"
                     onClick={() => router.push("/login")}
                 >
                     <ArrowLeft className="h-6 w-6 mr-2" />
@@ -55,19 +55,17 @@ export default function SignupForm() {
                 </button>
 
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold">Finish Signing Up</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">Finish Signing Up</h1>
                 </div>
 
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form className="space-y-5" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-1">
-                            Email
-                        </label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                         <input
                             id="email"
                             type="email"
                             placeholder="example@domain.com"
-                            className={`w-full p-2 border rounded ${formErrors.includes("email") ? "border-red-500" : ""}`}
+                            className={`mt-1 w-full rounded-lg border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${formErrors.includes("email") ? "border-red-500" : ""}`}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -75,50 +73,44 @@ export default function SignupForm() {
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium mb-1">
-                            Password
-                        </label>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                         <input
                             id="password"
                             type="password"
-                            className={`w-full p-2 border rounded ${formErrors.includes("password") ? "border-red-500" : ""}`}
+                            className={`mt-1 w-full rounded-lg border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${formErrors.includes("password") ? "border-red-500" : ""}`}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-1">
-                            Name
-                        </label>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
                         <input
                             id="name"
                             type="text"
-                            className={`w-full p-2 border rounded ${formErrors.includes("name") ? "border-red-500" : ""}`}
+                            className={`mt-1 w-full rounded-lg border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${formErrors.includes("name") ? "border-red-500" : ""}`}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="school" className="block text-sm font-medium mb-1">
-                            Phone Number
-                        </label>
+                        <label htmlFor="school" className="block text-sm font-medium text-gray-700">Phone Number</label>
                         <input
                             id="school"
                             type="text"
-                            className={`w-full p-2 border rounded ${formErrors.includes("phoneNumber") ? "border-red-500" : ""}`}
+                            className={`mt-1 w-full rounded-lg border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${formErrors.includes("phoneNumber") ? "border-red-500" : ""}`}
                             value={phoneNumber}
                             onChange={(e) => setSchool(e.target.value)}
                         />
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-200 hover:bg-blue-300 h-11">
+                    <button type="submit" className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         Sign up
                     </button>
 
                     {formErrors.length > 0 && (
-                        <p className="text-red-500 text-sm mt-2">
+                        <p className="text-red-500 text-sm mt-2 text-center">
                             {formErrors.length} required fields still remaining
                         </p>
                     )}

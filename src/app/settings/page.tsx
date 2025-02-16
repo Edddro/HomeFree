@@ -1,87 +1,228 @@
-'use client'
+"use client";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import Image from "next/image";
 import { useState } from "react";
+import { Plus } from "lucide-react";
 
 export default function InstancePage() {
   const [profiles, setProfiles] = useState([
-    { name: "Edward D.", image: "/profile1.jpg" },
-    { name: "Krishna C.", image: "/profile2.jpg" },
-    { name: "Elizabeth W.", image: "/profile3.jpg" },
+    {
+      name: "Edward D.",
+      image: "/Edward.jpg",
+      email: "edward@example.com",
+      phone: "+1 416-000-000",
+      videoUrl: "",
+    },
+    {
+      name: "Krishna C.",
+      image: "/krishna.webp",
+      email: "krishna@example.com",
+      phone: "+1 416-000-000",
+      videoUrl: "",
+    },
+    {
+      name: "Elizabeth W.",
+      image: "/elizabeth.jpg",
+      email: "elizabeth@example.com",
+      phone: "+1 416-000-000",
+      videoUrl: "",
+    },
+    { name: "Add friends", image: "", email: "", phone: "", videoUrl: "" },
   ]);
 
-  const handleProfileUpdate = (index: number, newName: string) => {
+  const [selectedProfileIndex, setSelectedProfileIndex] = useState<
+    number | null
+  >(null);
+  const [inputValue, setInputValue] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPhone, setInputPhone] = useState("");
+  const [inputVideoUrl, setInputVideoUrl] = useState("");
+  const [geolocationEnabled, setGeolocationEnabled] = useState(false);
+
+  const [userName, setUserName] = useState("HomeSafe");
+  const [userEmail, setUserEmail] = useState("homesafe@example.com");
+  const [userPhone, setUserPhone] = useState("+1 416-000-000");
+
+  const handleProfileUpdate = (index: number) => {
+    const updatedProfile = {
+      ...profiles[index],
+      name: inputValue || profiles[index].name,
+      email: inputEmail || profiles[index].email,
+      phone: inputPhone || profiles[index].phone,
+      videoUrl: inputVideoUrl || profiles[index].videoUrl,
+    };
+
     setProfiles((prevProfiles) => {
       const updatedProfiles = [...prevProfiles];
-      updatedProfiles[index].name = newName;
+      updatedProfiles[index] = updatedProfile;
       return updatedProfiles;
     });
   };
 
-  const [inputValue, setInputValue] = useState("");
+  const handleRemoveFriend = (index: number) => {
+    setProfiles((prevProfiles) => prevProfiles.filter((_, i) => i !== index));
+    setSelectedProfileIndex(null);
+  };
+
+  const handleSelectProfile = (index: number) => {
+    if (index === 3) return;
+    setSelectedProfileIndex(index);
+    setInputValue(profiles[index].name);
+    setInputEmail(profiles[index].email);
+    setInputPhone(profiles[index].phone);
+    setInputVideoUrl(profiles[index].videoUrl);
+  };
+
+  const handleUserSettingsUpdate = () => {
+    console.log("Updated User Settings:", { userName, userEmail, userPhone });
+  };
 
   return (
     <div className="max-w-sm mx-auto p-4">
-      {/* Profile Section */}
-      <div className="flex items-center justify-between mb-4">
-        {profiles.map((profile, index) => (
-          <Popover key={index}>
-            <PopoverTrigger>
-              <div className="flex flex-col items-center cursor-pointer">
-                <Image
-                  src={profile.image}
-                  alt={profile.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-                <span className="text-sm">{profile.name}</span>
-              </div>
-            </PopoverTrigger>
-            <PopoverContent className="p-4 space-y-2">
-              <label className="block text-sm font-medium">Name</label>
-              <Input
-                defaultValue={profile.name}
-                className="mt-1"
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <Button className="mt-2 w-full" onClick={() => handleProfileUpdate(index, inputValue)}>Save</Button>
-            </PopoverContent>
-          </Popover>
-        ))}
-        <div className="flex flex-col items-center">
-          <button className="w-12 h-12 flex items-center justify-center border rounded-lg text-2xl">+</button>
-          <span className="text-sm">Add Friends</span>
+      <div className="mb-6">
+        <h2 className="text-lg font-bold mb-4">Friends</h2>
+        <div className="grid grid-cols-3 gap-8">
+          {profiles.map((profile, index) => (
+            <Popover key={index}>
+              <PopoverTrigger>
+                <div
+                  className="flex flex-col items-center cursor-pointer"
+                  onClick={() => handleSelectProfile(index)}
+                >
+                  <div className="w-12 h-12 relative rounded-full overflow-hidden">
+                    {profile.name === "Add friends" ? (
+                      <Plus size={24} />
+                    ) : (
+                      <Image
+                        src={profile.image}
+                        alt={profile.name}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    )}
+                  </div>
+                  <span className="text-sm">{profile.name}</span>
+                </div>
+              </PopoverTrigger>
+            </Popover>
+          ))}
         </div>
       </div>
 
-      {/* Form Section */}
       <div className="space-y-4">
+        <h2 className="text-lg font-bold mb-4">Your Settings</h2>
         <div>
           <label className="block text-sm font-medium">Name</label>
-          <Input placeholder="HomeFree" className="mt-1" />
+          <Input
+            value={userName}
+            className="mt-1"
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
         <div>
           <label className="block text-sm font-medium">Email</label>
-          <Input type="email" placeholder="example@gmail.com" className="mt-1" />
+          <Input
+            value={userEmail}
+            className="mt-1"
+            onChange={(e) => setUserEmail(e.target.value)}
+          />
         </div>
         <div>
           <label className="block text-sm font-medium">Phone Number</label>
-          <Input type="tel" placeholder="+1 416-000-000" className="mt-1" />
+          <Input
+            value={userPhone}
+            className="mt-1"
+            onChange={(e) => setUserPhone(e.target.value)}
+          />
         </div>
         <div>
-          <label className="block text-sm font-medium">Password</label>
-          <Input type="password" placeholder="********" className="mt-1" />
+          <label className="block text-sm font-medium">
+            Enable Geolocation
+          </label>
+          <Switch
+            checked={geolocationEnabled}
+            onCheckedChange={(checked) => setGeolocationEnabled(checked)}
+            className={`${
+              geolocationEnabled ? "bg-blue-600" : "bg-gray-200"
+            } relative inline-flex items-center h-6 rounded-full w-11`}
+          >
+            <span
+              className={`${
+                geolocationEnabled ? "translate-x-full" : "translate-x-1"
+              } inline-block w-4 h-4 transform bg-white rounded-full transition`}
+            />
+          </Switch>
         </div>
+        <Button
+          className="mt-4 px-6 py-2 rounded-lg shadow"
+          onClick={handleUserSettingsUpdate}
+        >
+          Update Changes
+        </Button>
       </div>
 
-      {/* Update Button */}
-      <div className="mt-4 text-center">
-        <Button className="px-6 py-2 rounded-lg shadow">Update Changes</Button>
-      </div>
+      {selectedProfileIndex !== null && selectedProfileIndex !== 3 && (
+        <div className="space-y-4 mt-6">
+          <h2 className="text-lg font-bold mb-4">
+            Update {profiles[selectedProfileIndex].name} Information
+          </h2>
+          <div>
+            <label className="block text-sm font-medium">Name</label>
+            <Input
+              value={inputValue}
+              className="mt-1"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Email</label>
+            <Input
+              value={inputEmail}
+              className="mt-1"
+              onChange={(e) => setInputEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Phone Number</label>
+            <Input
+              value={inputPhone}
+              className="mt-1"
+              onChange={(e) => setInputPhone(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Video URL</label>
+            <Input
+              value={inputVideoUrl}
+              className="mt-1"
+              onChange={(e) => setInputVideoUrl(e.target.value)}
+            />
+          </div>
+
+          <div className="mt-4 text-center flex justify-between">
+            <Button
+              className="px-6 py-2 rounded-lg shadow"
+              onClick={() => handleProfileUpdate(selectedProfileIndex)}
+            >
+              Update Changes
+            </Button>
+            <Button
+              className="px-6 py-2 rounded-lg shadow bg-red-500 text-white"
+              onClick={() => handleRemoveFriend(selectedProfileIndex)}
+            >
+              Remove Friend
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -10,10 +10,17 @@ const NavBar = () => {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem className='flex flex-row sm:gap-10'>
-                        <Link href="/about" legacyBehavior passHref>
+                        <Link href="/" legacyBehavior passHref>
                             <NavigationMenuLink>
                                 <Button variant={'ghost'}>
                                     About
+                                </Button>
+                            </NavigationMenuLink>
+                        </Link>
+                        <Link href="/settings" legacyBehavior passHref>
+                            <NavigationMenuLink>
+                                <Button variant={'ghost'}>
+                                    Settings
                                 </Button>
                             </NavigationMenuLink>
                         </Link>
