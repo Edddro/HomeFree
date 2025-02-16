@@ -1,7 +1,9 @@
 import StreamingAvatar, {
   AvatarQuality,
   StreamingEvents,
+  TaskType,
 } from '@heygen/streaming-avatar';
+import { CohereClientV2 } from 'cohere-ai';
 
 let avatar: StreamingAvatar | null = null;
 let sessionData: any = null;
@@ -18,6 +20,38 @@ async function fetchAccessToken(): Promise<string> {
 
   const { data } = await response.json();
   return data.token;
+}
+
+const cohere = new CohereClientV2({
+  token: 'api',
+});
+(async () => {
+  const response = await cohere.chat({
+    model: 'command-r-plus',
+    messages: [
+      {
+        role: 'user',
+        content: 'I am in a potentially dangerous situation. Please help me navigate this to the best of your ability, and help me calm down as needed.',
+      },
+    ],
+  });
+  return response?.message?.content || 'Can you please repeat that?';
+})();
+
+// Helper function to send text to Cohere
+async function sendToCohere(text: string): Promise<string> {
+  const textFinal = `I am in a potentially dangerous situation. Please help me navigate this to the best of your ability, and help me calm down as needed. ${text}`;
+  const response = await cohere.chat({
+    model: 'command-r-plus',
+    messages: [
+      {
+        role: 'user',
+        content: textFinal,
+      },
+    ],
+  });
+  const content = response?.message?.content?.[0]?.text;
+  return content ?? 'Can you please repeat that?';
 }
 
 // Initialize streaming avatar session
@@ -83,9 +117,15 @@ async function terminateAvatarSession() {
 async function handleSpeak() {
   const userInput = document.getElementById('userInput') as HTMLInputElement;
   if (avatar && userInput.value) {
+    // Send text to Cohere and get the response
+    const cohereResponse = await sendToCohere(userInput.value);
+
+    // Send the Cohere response to the avatar
     await avatar.speak({
-      text: userInput.value,
+      text: cohereResponse,
+      task_type: TaskType.REPEAT,
     });
+
     userInput.value = ''; // Clear input after speaking
   }
 }
