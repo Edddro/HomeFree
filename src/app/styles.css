@@ -1,0 +1,248 @@
+:root {
+    --primary-blue: #4285f4;
+    --primary-blue-hover: #3367d6;
+    --background-mint: #f0f7f7;
+    --video-bg: #80d8ff;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --card-bg: #ffffff;
+    --hero-bg: #d6ebf1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-mint);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-secondary);
+}
+
+.main {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 2rem;
+    background-color: var(--hero-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.tagline-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.tagline-text {
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+}
+
+.tagline-description {
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+    padding-left: 0;
+}
+
+.pin-icon {
+    color: #ff4444;
+    width: 1.25rem;
+    height: 1.25rem;
+    vertical-align: middle;
+    margin-top: -3rem;
+}
+
+.video-container {
+    position: relative;
+    height: 12rem;
+    width: 12rem;
+    background-color: var(--video-bg);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.video-illustration {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cta-button {
+    width: auto;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cta-button:hover {
+    background-color: var(--primary-blue-hover);
+}
+
+.description {
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    padding: 1.5rem 0;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.features {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.features-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.feature-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: var(--card-bg);
+    border-radius: 9999px;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 100%;
+}
+
+.feature-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-title {
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.feature-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    flex: 1;
+    text-align: right;
+}
+
+@media (min-width: 640px) {
+    .header {
+        padding: 1.5rem;
+    }
+
+    .main {
+        padding-top: 3rem;
+    }
+
+    .video-container {
+        height: 16rem;
+    }
+
+    .feature-title {
+        font-size: 1rem;
+    }
+
+    .feature-description {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-top: 4rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero > * {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.feature-card {
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+}
