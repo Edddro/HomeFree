@@ -9,7 +9,7 @@ import Image from 'next/image';
 const attackTypes = ["Attack", "Disaster", "Panic", "Other"];
 
 const names = [
-    { name: 'Edward D', src: "/Edward.jpg" },
+    { name: 'Edward D.', src: "/Edward.jpg" },
     { name: 'Krishna C.', src: "/krishna.webp" },
     { name: 'Elizabeth W.', src: "/elizabeth.jpg" },
   ];
